@@ -34,11 +34,6 @@ jobs:
         with:
           arguments: checkstyleMain
 
-      - name: Sonarqube Analysis
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: sonarqube -x test
-
   release:
     runs-on: ubuntu-latest
     name: Release
