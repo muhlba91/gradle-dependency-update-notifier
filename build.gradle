@@ -25,7 +25,6 @@ buildscript {
 	ext {
 		lombokPluginVersion = '5.0.0'
 
-		sonarqubePluginVersion = '3.3'
 		printCoverageVersion = '2.0.0'
 		versionsPluginVersion = '0.36.0'
 		deblibsPluginVersion = '2.2.0'
@@ -40,7 +39,6 @@ buildscript {
 	}
 	dependencies {
 		classpath("io.franzbecker:gradle-lombok:${lombokPluginVersion}")
-		classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${sonarqubePluginVersion}")
 		classpath("gradle.plugin.de.jansauer.printcoverage:printcoverage:${printCoverageVersion}")
 		classpath("com.github.ben-manes:gradle-versions-plugin:${versionsPluginVersion}")
 		classpath("com.hellofresh.gradle:deblibs:${deblibsPluginVersion}")
@@ -58,7 +56,6 @@ apply plugin: 'idea'
 apply plugin: 'jacoco'
 apply plugin: 'checkstyle'
 apply plugin: 'io.franzbecker.gradle-lombok'
-apply plugin: 'org.sonarqube'
 apply plugin: 'de.jansauer.printcoverage'
 apply plugin: 'maven-publish'
 apply plugin: 'com.github.ben-manes.versions'
@@ -274,20 +271,5 @@ publishing {
 			artifactId project.gradlePlugin.plugins.gradleDependencyUpdateNotifierPlugin.id
 			version project.version
 		}
-	}
-}
-
-// sonarqube
-ext.sonarHostUrl = System.env.SONAR_HOST_URL ?: ''
-ext.sonarLogin = System.env.SONAR_LOGIN ?: ''
-System.setProperty('sonar.host.url', sonarHostUrl)
-System.setProperty('sonar.login', sonarLogin)
-sonarqube {
-	properties {
-		property "sonar.organization", "muhlba91-github"
-		property "sonar.projectKey", "org.muehlbachler.gradle.plugin.dependency-update-notifier"
-		property "sonar.projectName", rootProject.name
-		property "sonar.jacoco.reportPaths", "${project.buildDir}/jacoco/jacoco.exec"
-		property "sonar.exclusions", "**/src/main/java/org/muehlbachler/gradle/plugin/dependencyupdatenotifier/model/**/*.java"
 	}
 }
