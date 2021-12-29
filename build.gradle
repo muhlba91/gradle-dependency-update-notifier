@@ -2,42 +2,35 @@ import io.franzbecker.gradle.lombok.task.DelombokTask
 
 description = 'Gradle Dependency Update Notifier Plugin'
 group = 'org.muehlbachler'
-version = file('VERSION').text.trim()
-
-// gitlab ci versioning support
-ext.environment = System.env.CI_ENVIRONMENT_SLUG ?: 'development'
-if(System.env.USE_CI_VERSION == 'true') {
-	version = System.env.CI_VERSION
-}
-System.setProperty('ENVIRONMENT', environment)
+version = System.env.TAG_NAME ?: '0.0.0-SNAPSHOT'
 System.setProperty('VERSION', rootProject.version.toString())
 
 ext {
 	lombokVersion = '1.18.20'
-	moshiVersion = '1.9.2'
-	okHttpVersion = '4.3.1'
+	moshiVersion = '1.13.0'
+	okHttpVersion = '4.9.3'
 
-	apacheCommonsVersion = '3.9'
+	apacheCommonsVersion = '3.12.0'
 	apacheCommonsCollectionsVersion = '4.4'
 	jaxbVersion = '2.3.1'
 
-	junitVersion = '5.6.0'
-	junitPlatformRunnerVersion = '1.6.0'
-	assertJVersion = '3.15.0'
-	log4jVersion = '2.13.0'
-	hoverflyVersion = '0.12.2'
+	junitVersion = '5.8.2'
+	junitPlatformRunnerVersion = '1.8.2'
+	assertJVersion = '3.21.0'
+	log4jVersion = '2.17.1'
+	hoverflyVersion = '0.14.1'
 }
 
 buildscript {
 	ext {
 		lombokPluginVersion = '4.0.0'
 
-		sonarqubePluginVersion = '2.8.0.1969'
+		sonarqubePluginVersion = '3.3'
 		printCoverageVersion = '2.0.0'
-		versionsPluginVersion = '0.27.0'
-		deblibsPluginVersion = '2.0.0'
+		versionsPluginVersion = '0.36.0'
+		deblibsPluginVersion = '2.2.0'
 
-		gradlePublishPluginVersion = '0.10.1'
+		gradlePublishPluginVersion = '0.18.0'
 	}
 	repositories {
 		mavenCentral()
@@ -46,7 +39,6 @@ buildscript {
 		}
 	}
 	dependencies {
-
 		classpath("io.franzbecker:gradle-lombok:${lombokPluginVersion}")
 		classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${sonarqubePluginVersion}")
 		classpath("gradle.plugin.de.jansauer.printcoverage:printcoverage:${printCoverageVersion}")
