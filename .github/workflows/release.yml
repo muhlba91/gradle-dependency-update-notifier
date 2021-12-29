@@ -68,7 +68,8 @@ jobs:
           git push --follow-tags
       - name: Get Tag for Release
         run: |
-          echo "TAG_NAME=`git describe --abbrev=0 --match "v*"`" >> $GITHUB_ENV
+          TAG_NAME=`git describe --abbrev=0 --match "v*"`
+          echo "TAG_NAME=`echo ${TAG_NAME:1}`" >> $GITHUB_ENV
 
       - name: Publish Plugin
         uses: gradle/gradle-build-action@v2
