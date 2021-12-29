@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.GradleException;
 import org.gradle.api.tasks.Input;
+import org.gradle.api.tasks.Internal;
 import org.gradle.api.tasks.TaskAction;
 import org.muehlbachler.gradle.plugin.dependencyupdatenotifier.model.DependencyAnalysis;
 import org.muehlbachler.gradle.plugin.dependencyupdatenotifier.model.dependency.Dependency;
@@ -55,6 +56,7 @@ public abstract class BaseTask extends DefaultTask {
 
     protected abstract void handleDependencies(final DependencyAnalysis dependencies) throws IOException;
 
+    @Internal
     protected DependencyAnalysis getCurrentDependencies() throws IOException {
         return new DependencyAnalysis();
     }

@@ -6,7 +6,7 @@ version = System.env.TAG_NAME ?: '0.0.0-SNAPSHOT'
 System.setProperty('VERSION', rootProject.version.toString())
 
 ext {
-	lombokVersion = '1.18.20'
+	lombokVersion = '1.18.22'
 	moshiVersion = '1.13.0'
 	okHttpVersion = '4.9.3'
 
@@ -23,7 +23,7 @@ ext {
 
 buildscript {
 	ext {
-		lombokPluginVersion = '4.0.0'
+		lombokPluginVersion = '5.0.0'
 
 		sonarqubePluginVersion = '3.3'
 		printCoverageVersion = '2.0.0'
