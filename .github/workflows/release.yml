@@ -37,6 +37,10 @@ jobs:
   release:
     runs-on: ubuntu-latest
     name: Release
+    strategy:
+      max-parallel: 4
+      matrix:
+        java-version: [ 11 ]
     needs:
       - verify
 
