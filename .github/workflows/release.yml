@@ -4,7 +4,7 @@ name: Release
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   verify:
@@ -35,7 +35,6 @@ jobs:
           arguments: checkstyleMain
 
       - name: Sonarqube Analysis
-        if: github.ref == 'refs/heads/master'
         uses: gradle/gradle-build-action@v2
         with:
           arguments: sonarqube -x test
@@ -43,7 +42,6 @@ jobs:
   release:
     runs-on: ubuntu-latest
     name: Release
-    if: github.ref == 'refs/heads/main'
     needs:
       - verify
 
